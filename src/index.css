@@ -1,0 +1,586 @@
+/* ===== VARIAVEIS ===== */
+:root {
+  --cor-primaria: #D0C3B4;
+  --cor-primaria-hover: #b8953e;
+  --cor-fundo: #1a1209;
+  --cor-card: #2d1f0e;
+  --cor-texto: #f5e6c8;
+  --cor-texto-secundario: #b8a88a;
+  --cor-borda: #836531;
+  --cor-erro: #e74c3c;
+  --cor-sucesso: #27ae60;
+  --cor-acerto: #27ae60;
+  --cor-erro-resp: #e74c3c;
+  --sombra: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --raio: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== FUNDO TEMATICO ===== */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #2d1f0e;
+  min-height: 100vh;
+  background-color: #f5f0e1;
+  background-image: url('/fundo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* ===== BOTAO PRIMARIO ===== */
+.btn-primario {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, var(--cor-primaria), #8b6914);
+  color: #1a1209;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primario:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--cor-primaria-hover), #7a5c10);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201, 168, 76, 0.3);
+}
+
+.btn-primario:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== QUIZ ===== */
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quiz-header {
+  margin-bottom: 24px;
+  background: var(--cor-card);
+  padding: 16px 20px;
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda);
+}
+
+.progresso-barra {
+  width: 100%;
+  height: 8px;
+  background: rgba(26, 18, 9, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  border: 1px solid var(--cor-borda);
+}
+
+.progresso-preenchido {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cor-primaria), #8b6914);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progresso-texto {
+  font-size: 0.85rem;
+  color: var(--cor-texto-secundario);
+}
+
+.quiz-card {
+  background: var(--cor-card);
+  border-radius: var(--raio);
+  padding: 32px;
+  box-shadow: var(--sombra);
+  border: 2px solid var(--cor-borda);
+  position: relative;
+}
+
+.categoria-tag {
+  display: inline-block;
+  background: rgba(201, 168, 76, 0.15);
+  color: var(--cor-primaria);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  border: 1px solid var(--cor-borda);
+}
+
+.pergunta {
+  font-size: 1.3rem;
+  margin-bottom: 28px;
+  line-height: 1.5;
+  color: var(--cor-texto);
+}
+
+.alternativas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alternativa {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border: 2px solid var(--cor-borda);
+  background: rgba(26, 18, 9, 0.4);
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.alternativa:hover:not(:disabled) {
+  border-color: var(--cor-primaria);
+  background: rgba(201, 168, 76, 0.1);
+  transform: translateX(4px);
+}
+
+.alternativa:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.alternativa.correta {
+  border-color: var(--cor-acerto) !important;
+  background: rgba(39, 174, 96, 0.15) !important;
+}
+
+.letra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cor-primaria), #8b6914);
+  color: #1a1209;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.texto {
+  font-size: 1.05rem;
+}
+
+/* ===== FEEDBACK EDUCATIVO ===== */
+.feedback-educativo {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 10px;
+  animation: fadeIn 0.3s ease;
+  border: 2px solid;
+}
+
+.feedback-educativo.acerto {
+  background: rgba(39, 174, 96, 0.12);
+  border-color: var(--cor-acerto);
+}
+
+.feedback-educativo.erro {
+  background: rgba(231, 76, 60, 0.12);
+  border-color: var(--cor-erro-resp);
+}
+
+.feedback-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.feedback-educativo.acerto .feedback-titulo {
+  color: var(--cor-acerto);
+}
+
+.feedback-educativo.erro .feedback-titulo {
+  color: var(--cor-erro-resp);
+}
+
+.feedback-pontos {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.feedback-mensagem {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.carregando {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.2rem;
+  color: var(--cor-texto-secundario);
+}
+
+/* ===== ALTERNATIVA SELECIONADA ===== */
+.alternativa.selecionada {
+  border-color: var(--cor-primaria) !important;
+  background: rgba(201, 168, 76, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
+  transform: translateX(4px);
+}
+
+/* ===== ALTERNATIVA ERRADA ===== */
+.alternativa.errada-selecionada {
+  border-color: var(--cor-erro) !important;
+  background: rgba(231, 76, 60, 0.15) !important;
+}
+
+/* ===== BOTAO CONFIRMAR DESABILITADO ===== */
+.btn-primario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ===== TELA DE RESULTADO ===== */
+.resultado-card {
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.resultado-titulo {
+  font-size: 2rem;
+  color: var(--cor-primaria);
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.resultado-sub {
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  margin-bottom: 32px;
+}
+
+.resultado-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-box {
+  background: rgba(26, 18, 9, 0.5);
+  border-radius: var(--raio);
+  padding: 20px;
+  border: 2px solid var(--cor-borda);
+}
+
+.stat-numero {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: 4px;
+}
+
+.stat-rotulo {
+  font-size: 0.8rem;
+  color: var(--cor-texto-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resultado-percentual {
+  margin-bottom: 24px;
+}
+
+.percentual-circulo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--cor-primaria);
+  background: rgba(201, 168, 76, 0.1);
+}
+
+.percentual-valor {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+.percentual-label {
+  font-size: 0.8rem;
+  color: var(--cor-texto-secundario);
+  text-transform: uppercase;
+}
+
+.resultado-mensagem {
+  color: var(--cor-texto);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resultado-acoes {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .quiz-card {
+    padding: 20px;
+  }
+
+  .pergunta {
+    font-size: 1.1rem;
+  }
+
+  .resultado-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .resultado-titulo {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultado-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-container {
+    padding: 12px;
+  }
+}
+
+/* ===== CORES POR TEMA ===== */
+
+/* ROXO - Violencia Emocional */
+.quiz-emocional .quiz-header,
+.quiz-emocional .quiz-card,
+.quiz-emocional .alternativa,
+.quiz-emocional .stat-box,
+.quiz-emocional .percentual-circulo {
+  background: #b73ad6;
+  border-color: #7f109b;
+}
+
+/* BARRA DE PROGRESSO e LETRAS A-B-C-D  */
+.quiz-emocional .progresso-preenchido,
+.quiz-emocional .letra {
+  background: #d287fe;  
+}
+
+/* BOTÃO "CONFIRMAR RESPOSTA"  */
+.quiz-emocional .btn-primario {
+  background: linear-gradient(135deg, #ffb47e, #EA580C); 
+  color: #ffffff;
+}
+
+.quiz-emocional .alternativa:hover:not(:disabled) {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #A855F7;
+}
+
+.quiz-emocional .alternativa.selecionada {
+  background: #460e7a4d !important;
+  border-color: #7f109b !important;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+}
+
+.quiz-emocional .categoria-tag {
+  background: #b73ad6;
+  color: #ffffff;
+  border-color: #7f109b;
+}
+
+.quiz-emocional .feedback-educativo.acerto {
+  background: rgba(39, 174, 96, 0.15);
+  border-color: var(--cor-acerto);
+}
+
+.quiz-emocional .feedback-educativo.erro {
+  background: rgba(192, 45, 29, 0.15);
+  border-color: var(--cor-erro-resp);
+}
+
+.quiz-emocional .resultado-titulo,
+.quiz-emocional .stat-numero,
+.quiz-emocional .percentual-valor,
+.quiz-emocional .pergunta,
+.quiz-emocional .texto {
+  color: #F3E8FF;
+}
+
+.quiz-emocional .progresso-texto,
+.quiz-emocional .stat-rotulo,
+.quiz-emocional .resultado-sub,
+.quiz-emocional .resultado-mensagem {
+  color: #DDD6FE;
+}
+
+/* LARANJA - Violencia Estrutural */
+.quiz-estrutural .quiz-header,
+.quiz-estrutural .quiz-card,
+.quiz-estrutural .alternativa,
+.quiz-estrutural .stat-box,
+.quiz-estrutural .percentual-circulo {
+  background: #EA580C;
+  border-color: #FB923C;
+}
+
+.quiz-estrutural .progresso-preenchido,
+.quiz-estrutural .letra,
+.quiz-estrutural .btn-primario {
+  background: linear-gradient(135deg, #ffac5c, #EA580C);
+}
+
+.quiz-estrutural .alternativa:hover:not(:disabled) {
+  background: rgba(251, 146, 60, 0.2);
+  border-color: #FB923C;
+}
+
+.quiz-estrutural .alternativa.selecionada {
+  background: rgba(251, 146, 60, 0.3) !important;
+  border-color: #FB923C !important;
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.3);
+}
+
+.quiz-estrutural .categoria-tag {
+  background: rgba(251, 146, 60, 0.2);
+  color: #FFEDD5;
+  border-color: #FB923C;
+}
+
+.quiz-estrutural .feedback-educativo.acerto {
+  background: rgba(39, 174, 96, 0.15);
+  border-color: var(--cor-acerto);
+}
+
+.quiz-estrutural .feedback-educativo.erro {
+  background: rgba(231, 76, 60, 0.15);
+  border-color: var(--cor-erro-resp);
+}
+
+.quiz-estrutural .resultado-titulo,
+.quiz-estrutural .stat-numero,
+.quiz-estrutural .percentual-valor,
+.quiz-estrutural .pergunta,
+.quiz-estrutural .texto {
+  color: #FFF7ED;
+}
+
+.quiz-estrutural .progresso-texto,
+.quiz-estrutural .stat-rotulo,
+.quiz-estrutural .resultado-sub,
+.quiz-estrutural .resultado-mensagem {
+  color: #FED7AA;
+}
+
+/* VERDE - Protecao */
+.quiz-protecao .quiz-header,
+.quiz-protecao .quiz-card,
+.quiz-protecao .alternativa,
+.quiz-protecao .stat-box,
+.quiz-protecao .percentual-circulo {
+  background: #8cd7c6;
+  border-color: #34D399;
+}
+
+/* BARRA DE PROGRESSO e LETRAS A-B-C-D → mantém verde */
+.quiz-protecao .progresso-preenchido,
+.quiz-protecao .letra {
+  background: #00845B;
+}
+
+/* BOTÃO "CONFIRMAR RESPOSTA"  */
+.quiz-protecao .btn-primario {
+  background: #1fa87d;    /* ← troque aqui pela cor que quiser */
+  color: #ffffff;         /* texto claro */
+}
+
+.quiz-protecao .alternativa:hover:not(:disabled) {
+  background: rgba(52, 211, 153, 0.2);
+  border-color: #34D399;
+}
+
+.quiz-protecao .alternativa.selecionada {
+  background: rgba(52, 211, 153, 0.3) !important;
+  border-color: #34D399 !important;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.3);
+}
+
+.quiz-protecao .categoria-tag {
+  background: rgba(52, 211, 153, 0.2);
+  color: #ffffff;
+  border-color: #34D399;
+}
+
+.quiz-protecao .feedback-educativo.acerto {
+  background: rgba(39, 174, 96, 0.15);
+  border-color: var(--cor-acerto);
+}
+
+.quiz-protecao .feedback-educativo.erro {
+  background: rgba(231, 76, 60, 0.15);
+  border-color: var(--cor-erro-resp);
+}
+
+.quiz-protecao .resultado-titulo,
+.quiz-protecao .stat-numero,
+.quiz-protecao .percentual-valor,
+.quiz-protecao .pergunta,
+.quiz-protecao .texto {
+  color: #ECFDF5;
+}
+
+.quiz-protecao .progresso-texto,
+.quiz-protecao .stat-rotulo,
+.quiz-protecao .resultado-sub,
+.quiz-protecao .resultado-mensagem {
+  color: #A7F3D0;
+}
