@@ -13,13 +13,13 @@ const corPorCategoria: Record<string, string> = {
 };
 
 export default function Quiz() {
-  const { obterRespostas, registrarResposta, calcularEstatisticas, resetar } = useQuiz();
+  const { obterRespostas, registrarResposta } = useQuiz();
   const [questoesPendentes, setQuestoesPendentes] = useState<Questao[]>([]);
   const [questaoAtual, setQuestaoAtual] = useState(0);
   const [carregando, setCarregando] = useState(true);
   const [enviando, setEnviando] = useState(false);
   const [alternativaSelecionada, setAlternativaSelecionada] = useState<"A" | "B" | "C" | "D" | null>(null);
-  const [feedback, setFeedback] = useState<{ acertou: boolean; pontos: number; mensagem: string } | null>(null);
+  const [feedback, setFeedback] = useState<{ acertou: boolean; mensagem: string } | null>(null);
   const [finalizado, setFinalizado] = useState(false);
 
   useEffect(() => {
@@ -48,7 +48,6 @@ export default function Quiz() {
     setEnviando(true);
 
     const acertou = alternativaSelecionada === questao.resposta_correta;
-    const pontos_ganhos = acertou ? questao.pontos_acerto : questao.pontos_erro;
     const mensagem = acertou ? questao.feedback_acerto : questao.feedback_erro;
 
     const resposta = {
@@ -56,12 +55,11 @@ export default function Quiz() {
       questao_id: questao.id,
       resposta_marcada: alternativaSelecionada,
       acertou,
-      pontos_ganhos,
       respondida_em: new Date().toISOString(),
     };
 
     registrarResposta(resposta);
-    setFeedback({ acertou, pontos: pontos_ganhos, mensagem });
+    setFeedback({ acertou, mensagem });
 
     const isUltima = questaoAtual >= questoesPendentes.length - 1;
 
@@ -77,11 +75,6 @@ export default function Quiz() {
     }, 4000);
   }
 
-  function reiniciar() {
-    resetar();
-    carregarQuestoes();
-  }
-
   if (carregando) {
     return (
       <div className="quiz-container">
@@ -91,51 +84,18 @@ export default function Quiz() {
   }
 
   if (finalizado) {
-    const stats = calcularEstatisticas();
-    const total = questoesMock.length;
-    const percentual = total > 0 ? Math.round((stats.acertos / total) * 100) : 0;
-
     return (
       <div className="quiz-container">
-        <div className="quiz-card resultado-card">
-          <h1 className="resultado-titulo">Questionario Concluido!</h1>
-          <p className="resultado-sub">Voce respondeu todas as {total} questoes sobre conscientizacao de violencias.</p>
-
-          <div className="resultado-stats">
-            <div className="stat-box">
-              <span className="stat-numero">{stats.acertos}</span>
-              <span className="stat-rotulo">Acertos</span>
-            </div>
-            <div className="stat-box">
-              <span className="stat-numero">{stats.erros}</span>
-              <span className="stat-rotulo">Erros</span>
-            </div>
-            <div className="stat-box">
-              <span className="stat-numero">{stats.pontos}</span>
-              <span className="stat-rotulo">Pontos</span>
-            </div>
-          </div>
-
-          <div className="resultado-percentual">
-            <div className="percentual-circulo">
-              <span className="percentual-valor">{percentual}%</span>
-              <span className="percentual-label">de acerto</span>
-            </div>
-          </div>
-
-          <p className="resultado-mensagem">
-            {percentual >= 80
-              ? "Excelente! Voce demonstra grande consciencia sobre como identificar e combater as violencias."
-              : percentual >= 50
-              ? "Bom trabalho! Ha ainda alguns pontos para aprimorar seu conhecimento."
-              : "Continue aprendendo! Cada resposta e uma oportunidade de crescimento."}
+        <div className="quiz-card" style={{ textAlign: "center", padding: "60px 40px" }}>
+          <h1 style={{ fontSize: "2rem", marginBottom: "20px", color: "#FFFFFF" }}>
+            Obrigado!
+          </h1>
+          <p style={{ fontSize: "1.1rem", color: "#DDD6FE", lineHeight: "1.6" }}>
+            Voce completou o questionario sobre conscientizacao de violencias.
           </p>
-
-          <div className="resultado-acoes">
-            <button className="btn-primario" onClick={reiniciar}>
-              Refazer Questionario
-            </button>
-          </div>
+          <p style={{ fontSize: "1rem", color: "#B8A9C9", marginTop: "16px" }}>
+            Suas respostas ajudam a construir uma sociedade mais consciente.
+          </p>
         </div>
       </div>
     );
@@ -144,12 +104,16 @@ export default function Quiz() {
   if (questoesPendentes.length === 0) {
     return (
       <div className="quiz-container">
-        <div className="quiz-card">
-          <h2>Parabens!</h2>
-          <p>Voce ja respondeu todas as questoes desta sessao.</p>
-          <button className="btn-primario" onClick={reiniciar} style={{ marginTop: "20px" }}>
-            Refazer Questionario
-          </button>
+        <div className="quiz-card" style={{ textAlign: "center", padding: "60px 40px" }}>
+          <h1 style={{ fontSize: "2rem", marginBottom: "20px", color: "#FFFFFF" }}>
+            Obrigado!
+          </h1>
+          <p style={{ fontSize: "1.1rem", color: "#DDD6FE", lineHeight: "1.6" }}>
+            Voce completou o questionario sobre conscientizacao de violencias.
+          </p>
+          <p style={{ fontSize: "1rem", color: "#B8A9C9", marginTop: "16px" }}>
+            Suas respostas ajudam a construir uma sociedade mais consciente.
+          </p>
         </div>
       </div>
     );
@@ -221,9 +185,6 @@ export default function Quiz() {
           <div className={`feedback-educativo ${feedback.acertou ? "acerto" : "erro"}`}>
             <div className="feedback-titulo">
               {feedback.acertou ? " Acertou!" : " Errou!"}
-              <span className="feedback-pontos">
-                {feedback.acertou ? `+${feedback.pontos}` : `${feedback.pontos}`} pontos
-              </span>
             </div>
             <p className="feedback-mensagem">{feedback.mensagem}</p>
           </div>

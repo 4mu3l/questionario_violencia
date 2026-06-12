@@ -18,6 +18,5 @@ export interface Resposta {
   questao_id: string;
   resposta_marcada: "A" | "B" | "C" | "D";
   acertou: boolean;
-  pontos_ganhos: number;
   respondida_em: string;
 }
