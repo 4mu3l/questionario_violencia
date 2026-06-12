@@ -7,9 +7,9 @@
   --cor-texto: #f5e6c8;
   --cor-texto-secundario: #b8a88a;
   --cor-borda: #836531;
-  --cor-erro: #e74c3c;
+  --cor-erro: #ff1900;
   --cor-sucesso: #27ae60;
-  --cor-acerto: #27ae60;
+  --cor-acerto: #00ff00;
   --cor-erro-resp: #e74c3c;
   --sombra: 0 10px 40px rgba(0, 0, 0, 0.5);
   --raio: 12px;
@@ -397,193 +397,231 @@ body {
   }
 }
 
-/* ===== CORES POR TEMA ===== */
+/* ============================================================
+   CORES POR TEMA - REFEITAS (tons pastéis/morenos do modelo)
+   ============================================================ */
 
-/* ROXO - Violencia Emocional */
+/* ===== ROXO - Violencia Emocional ===== */
+/* Fundo header/card: roxo acinzentado escuro */
 .quiz-emocional .quiz-header,
 .quiz-emocional .quiz-card,
 .quiz-emocional .alternativa,
 .quiz-emocional .stat-box,
 .quiz-emocional .percentual-circulo {
-  background: #b73ad6;
-  border-color: #7f109b;
+  background: #68537C;
+  border-color: #8B7AA0;
 }
 
-/* BARRA DE PROGRESSO e LETRAS A-B-C-D  */
-.quiz-emocional .progresso-preenchido,
+/* Barra de progresso: roxo claro pastel */
+.quiz-emocional .progresso-preenchido {
+  background: #B8A9C9;
+}
+
+/* Letras A-B-C-D: roxo médio */
 .quiz-emocional .letra {
-  background: #d287fe;  
+  background: #7D6A91;
+  color: #FFFFFF;
 }
 
-/* BOTÃO "CONFIRMAR RESPOSTA"  */
+/* Botão Confirmar: roxo escuro */
 .quiz-emocional .btn-primario {
-  background: linear-gradient(135deg, #ffb47e, #EA580C); 
-  color: #ffffff;
+  background: #4A3B5C;
+  color: #FFFFFF;
 }
 
+/* Hover das alternativas */
 .quiz-emocional .alternativa:hover:not(:disabled) {
-  background: rgba(168, 85, 247, 0.2);
-  border-color: #A855F7;
+  background: rgba(139, 122, 160, 0.3);
+  border-color: #B8A9C9;
 }
 
+/* Alternativa selecionada */
 .quiz-emocional .alternativa.selecionada {
-  background: #460e7a4d !important;
-  border-color: #7f109b !important;
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+  background: rgba(139, 122, 160, 0.4) !important;
+  border-color: #B8A9C9 !important;
+  box-shadow: 0 0 0 3px rgba(184, 169, 201, 0.3);
 }
 
+/* Tag da categoria */
 .quiz-emocional .categoria-tag {
-  background: #b73ad6;
-  color: #ffffff;
-  border-color: #7f109b;
+  background: #7D6A91;
+  color: #FFFFFF;
+  border-color: #8B7AA0;
 }
 
+/* Feedback acerto/erro */
 .quiz-emocional .feedback-educativo.acerto {
-  background: rgba(39, 174, 96, 0.15);
-  border-color: var(--cor-acerto);
+  background: rgba(76, 175, 80, 0.15);
+  border-color: #4CAF50;
 }
 
 .quiz-emocional .feedback-educativo.erro {
-  background: rgba(192, 45, 29, 0.15);
-  border-color: var(--cor-erro-resp);
+  background: rgba(244, 67, 54, 0.15);
+  border-color: #ff1100;
 }
 
+/* Textos */
 .quiz-emocional .resultado-titulo,
 .quiz-emocional .stat-numero,
 .quiz-emocional .percentual-valor,
 .quiz-emocional .pergunta,
 .quiz-emocional .texto {
-  color: #F3E8FF;
+  color: #FFFFFF;
 }
 
 .quiz-emocional .progresso-texto,
 .quiz-emocional .stat-rotulo,
 .quiz-emocional .resultado-sub,
 .quiz-emocional .resultado-mensagem {
-  color: #DDD6FE;
+  color: #D4C5E2;
 }
 
-/* LARANJA - Violencia Estrutural */
+/* ===== LARANJA/TERRACOTA - Violencia Estrutural ===== */
+/* Fundo header/card: laranja queimado escuro */
 .quiz-estrutural .quiz-header,
 .quiz-estrutural .quiz-card,
 .quiz-estrutural .alternativa,
 .quiz-estrutural .stat-box,
 .quiz-estrutural .percentual-circulo {
-  background: #EA580C;
-  border-color: #FB923C;
+  background: #B85C3E;
+  border-color: #D4A574;
 }
 
-.quiz-estrutural .progresso-preenchido,
-.quiz-estrutural .letra,
+/* Barra de progresso: laranja claro pastel */
+.quiz-estrutural .progresso-preenchido {
+  background: #E8C4A0;
+}
+
+/* Letras A-B-C-D: marrom avermelhado */
+.quiz-estrutural .letra {
+  background: #8B4513;
+  color: #FFFFFF;
+}
+
+/* Botão Confirmar: marrom escuro */
 .quiz-estrutural .btn-primario {
-  background: linear-gradient(135deg, #ffac5c, #EA580C);
+  background: #6B3410;
+  color: #FFFFFF;
 }
 
+/* Hover das alternativas */
 .quiz-estrutural .alternativa:hover:not(:disabled) {
-  background: rgba(251, 146, 60, 0.2);
-  border-color: #FB923C;
+  background: rgba(212, 165, 116, 0.3);
+  border-color: #E8C4A0;
 }
 
+/* Alternativa selecionada */
 .quiz-estrutural .alternativa.selecionada {
-  background: rgba(251, 146, 60, 0.3) !important;
-  border-color: #FB923C !important;
-  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.3);
+  background: rgba(212, 165, 116, 0.4) !important;
+  border-color: #E8C4A0 !important;
+  box-shadow: 0 0 0 3px rgba(232, 196, 160, 0.3);
 }
 
+/* Tag da categoria */
 .quiz-estrutural .categoria-tag {
-  background: rgba(251, 146, 60, 0.2);
-  color: #FFEDD5;
-  border-color: #FB923C;
+  background: #8B4513;
+  color: #FFFFFF;
+  border-color: #D4A574;
 }
 
+/* Feedback acerto/erro */
 .quiz-estrutural .feedback-educativo.acerto {
-  background: rgba(39, 174, 96, 0.15);
-  border-color: var(--cor-acerto);
+  background: rgba(76, 175, 80, 0.15);
+  border-color: #4CAF50;
 }
 
 .quiz-estrutural .feedback-educativo.erro {
-  background: rgba(231, 76, 60, 0.15);
-  border-color: var(--cor-erro-resp);
+  background: rgba(244, 67, 54, 0.15);
+  border-color: #ff1100;
 }
 
+/* Textos */
 .quiz-estrutural .resultado-titulo,
 .quiz-estrutural .stat-numero,
 .quiz-estrutural .percentual-valor,
 .quiz-estrutural .pergunta,
 .quiz-estrutural .texto {
-  color: #FFF7ED;
+  color: #FFFFFF;
 }
 
 .quiz-estrutural .progresso-texto,
 .quiz-estrutural .stat-rotulo,
 .quiz-estrutural .resultado-sub,
 .quiz-estrutural .resultado-mensagem {
-  color: #FED7AA;
+  color: #F5E6D3;
 }
 
-/* VERDE - Protecao */
+/* ===== VERDE SÁLVIA - Protecao ===== */
+/* Fundo header/card: verde acinzentado escuro */
 .quiz-protecao .quiz-header,
 .quiz-protecao .quiz-card,
 .quiz-protecao .alternativa,
 .quiz-protecao .stat-box,
 .quiz-protecao .percentual-circulo {
-  background: #8cd7c6;
-  border-color: #34D399;
+  background: #6B8E7B;
+  border-color: #8FBC8F;
 }
 
-/* BARRA DE PROGRESSO e LETRAS A-B-C-D → mantém verde */
-.quiz-protecao .progresso-preenchido,
+/* Barra de progresso: verde claro pastel */
+.quiz-protecao .progresso-preenchido {
+  background: #A8D5BA;
+}
+
+/* Letras A-B-C-D: verde escuro */
 .quiz-protecao .letra {
-  background: #00845B;
+  background: #2F5D46;
+  color: #FFFFFF;
 }
 
-/* BOTÃO "CONFIRMAR RESPOSTA"  */
+/* Botão Confirmar: verde musgo escuro */
 .quiz-protecao .btn-primario {
-  background: #1fa87d;    /* ← troque aqui pela cor que quiser */
-  color: #ffffff;         /* texto claro */
+  background: #1E4D2B;
+  color: #FFFFFF;
 }
 
+/* Hover das alternativas */
 .quiz-protecao .alternativa:hover:not(:disabled) {
-  background: rgba(52, 211, 153, 0.2);
-  border-color: #34D399;
+  background: rgba(143, 188, 143, 0.3);
+  border-color: #A8D5BA;
 }
 
+/* Alternativa selecionada */
 .quiz-protecao .alternativa.selecionada {
-  background: rgba(52, 211, 153, 0.3) !important;
-  border-color: #34D399 !important;
-  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.3);
+  background: rgba(143, 188, 143, 0.4) !important;
+  border-color: #A8D5BA !important;
+  box-shadow: 0 0 0 3px rgba(168, 213, 186, 0.3);
 }
 
+/* Tag da categoria */
 .quiz-protecao .categoria-tag {
-  background: rgba(52, 211, 153, 0.2);
-  color: #ffffff;
-  border-color: #34D399;
+  background: #2F5D46;
+  color: #FFFFFF;
+  border-color: #8FBC8F;
 }
 
+/* Feedback acerto/erro */
 .quiz-protecao .feedback-educativo.acerto {
-  background: rgba(39, 174, 96, 0.15);
-  border-color: var(--cor-acerto);
+  background: rgba(76, 175, 80, 0.15);
+  border-color: #4CAF50;
 }
 
 .quiz-protecao .feedback-educativo.erro {
-  background: rgba(231, 76, 60, 0.15);
-  border-color: var(--cor-erro-resp);
+  background: rgba(244, 67, 54, 0.15);
+  border-color: #F44336;
 }
 
+/* Textos */
 .quiz-protecao .resultado-titulo,
 .quiz-protecao .stat-numero,
 .quiz-protecao .percentual-valor,
 .quiz-protecao .pergunta,
-
-
-
 .quiz-protecao .texto {
-  color: #ECFDF5;
+  color: #FFFFFF;
 }
 
 .quiz-protecao .progresso-texto,
 .quiz-protecao .stat-rotulo,
 .quiz-protecao .resultado-sub,
 .quiz-protecao .resultado-mensagem {
-  color: #A7F3D0;
+  color: #D4E8D4;
 }

@@ -220,7 +220,7 @@ export default function Quiz() {
         {feedback && (
           <div className={`feedback-educativo ${feedback.acertou ? "acerto" : "erro"}`}>
             <div className="feedback-titulo">
-              {feedback.acertou ? "✅ Acertou!" : "❌ Errou!"}
+              {feedback.acertou ? " Acertou!" : " Errou!"}
               <span className="feedback-pontos">
                 {feedback.acertou ? `+${feedback.pontos}` : `${feedback.pontos}`} pontos
               </span>
